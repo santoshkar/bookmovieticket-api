@@ -1,6 +1,8 @@
 package com.santosh.assessment.entity;
 
 import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
@@ -17,6 +19,7 @@ import org.hibernate.annotations.Type;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.santosh.assessment.dto.ScreenIdAndtimeDto;
 
 import lombok.Data;
 
@@ -28,7 +31,7 @@ public class MovieScreening  {
 	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 	@Column(name = "id", columnDefinition = "VARCHAR(255)")
     @Type(type = "org.hibernate.type.UUIDCharType")
-    @JsonProperty("MovieScreeningId")
+    @JsonProperty("movieScreeningId")
     private UUID id;
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -43,5 +46,11 @@ public class MovieScreening  {
 	private int screenNo;
 	
 	private boolean isPlayingInTheatre;
+	
+	public ScreenIdAndtimeDto getScreenIdAndTimeDto() {
+		DateFormat format = new SimpleDateFormat( "h:mm a" );
+		String str = format.format( getShowBeginsOn() );
+		return new ScreenIdAndtimeDto(getId().toString(), str);
+	}
  
 }

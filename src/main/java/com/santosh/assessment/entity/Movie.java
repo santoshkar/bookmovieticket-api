@@ -22,7 +22,7 @@ public class Movie {
 	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 	@Column(name = "id", columnDefinition = "VARCHAR(255)")
 	@Type(type = "org.hibernate.type.UUIDCharType")
-	@JsonProperty("MovieId")
+	@JsonProperty("movieId")
 	private UUID id;
 	private int duration;
 	private String genre;

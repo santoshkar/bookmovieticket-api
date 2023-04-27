@@ -28,7 +28,7 @@ public class MovieRelease  {
 	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 	@Column(name = "id", columnDefinition = "VARCHAR(255)")
     @Type(type = "org.hibernate.type.UUIDCharType")
-    @JsonProperty("MovieReleaseId")
+    @JsonProperty("movieReleaseId")
     private UUID id;
 
     private Date releaseDate;

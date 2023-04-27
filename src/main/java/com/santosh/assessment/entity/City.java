@@ -22,7 +22,7 @@ public class City  {
 	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 	@Column(name = "id", columnDefinition = "VARCHAR(255)")
     @Type(type = "org.hibernate.type.UUIDCharType")
-    @JsonProperty("CityId")
+    @JsonProperty("cityId")
     private UUID id;
 
     private String country;

@@ -26,7 +26,7 @@ public class Customer  {
 	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 	@Column(name = "id", columnDefinition = "VARCHAR(255)")
     @Type(type = "org.hibernate.type.UUIDCharType")
-    @JsonProperty("CustomerId")
+    @JsonProperty("customerId")
     private UUID id;
 
     private String userName;

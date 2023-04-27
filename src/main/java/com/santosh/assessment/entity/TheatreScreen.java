@@ -25,7 +25,7 @@ public class TheatreScreen {
 	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 	@Column(name = "id", columnDefinition = "VARCHAR(255)")
 	@Type(type = "org.hibernate.type.UUIDCharType")
-	@JsonProperty("TheatreScreenId")
+	@JsonProperty("theatreScreenId")
 	private UUID id;
 	private int screenNo;
 	

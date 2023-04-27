@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.santosh.assessment.dto.ScreenResponseElement;
+import com.santosh.assessment.dto.ScreeningResponse;
 import com.santosh.assessment.entity.Movie;
 import com.santosh.assessment.entity.MovieRelease;
 import com.santosh.assessment.entity.MovieScreening;
@@ -34,7 +36,7 @@ public class MovieController {
 		return ResponseEntity.ok(movielist);
 	}
 	
-	@GetMapping("/theatre")
+	@GetMapping("/screening")
 	public ResponseEntity<?> findTheatreAndTimeByMovidId(@RequestParam String movieId, @RequestParam String cityId) {
 		List<MovieTheatre> entities = movieService.findTheatreAndTimeByMovieId(movieId, cityId);
 		
@@ -57,6 +59,16 @@ public class MovieController {
 		  e.printStackTrace();
 		}
 		
-		return ResponseEntity.ok(map);
+		ScreeningResponse response = new ScreeningResponse();
+		map.forEach((theatre, screeninglist) -> {
+			ScreenResponseElement e = new ScreenResponseElement();
+			e.setTheatreName(theatre.getName());
+			e.setCity(theatre.getCity().getCity());
+			e.setScreens(screeninglist.parallelStream().map(e2->e2.getScreenIdAndTimeDto()).collect(Collectors.toList()));
+			response.addElement(e);
+		});
+		return ResponseEntity.ok(response);
 	}
 }
+
+
