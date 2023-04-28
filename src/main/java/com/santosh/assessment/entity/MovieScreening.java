@@ -47,7 +47,7 @@ public class MovieScreening  {
 	
 	private boolean isPlayingInTheatre;
 	
-	public ScreenIdAndtimeDto getScreenIdAndTimeDto() {
+	public ScreenIdAndtimeDto getScreenIdAndTime() {
 		DateFormat format = new SimpleDateFormat( "h:mm a" );
 		String str = format.format( getShowBeginsOn() );
 		return new ScreenIdAndtimeDto(getId().toString(), str);

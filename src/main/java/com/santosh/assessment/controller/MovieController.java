@@ -64,7 +64,7 @@ public class MovieController {
 			ScreenResponseElement e = new ScreenResponseElement();
 			e.setTheatreName(theatre.getName());
 			e.setCity(theatre.getCity().getCity());
-			e.setScreens(screeninglist.parallelStream().map(e2->e2.getScreenIdAndTimeDto()).collect(Collectors.toList()));
+			e.setScreens(screeninglist.parallelStream().map(e2->e2.getScreenIdAndTime()).collect(Collectors.toList()));
 			response.addElement(e);
 		});
 		return ResponseEntity.ok(response);
