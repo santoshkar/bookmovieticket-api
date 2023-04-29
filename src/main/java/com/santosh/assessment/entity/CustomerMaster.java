@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -13,27 +14,35 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
 @Data
 @Entity
-public class TheatreScreen {
+public class CustomerMaster {
 	@Id
 	@GeneratedValue(generator = "UUID")
 	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-	@Column(name = "id", columnDefinition = "VARCHAR(255)")
+	@Column(columnDefinition = "VARCHAR(255)")
 	@Type(type = "org.hibernate.type.UUIDCharType")
-	@JsonProperty("theatreScreenId")
-	private UUID id;
-	private int screenNo;
+	private UUID customerId;
 	
-	@ManyToOne
-	@JoinColumn(name = "theatre_id")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "city_id")
 	@JsonManagedReference
-	private Theatre theatre;
+	private CityMaster city;
+
+	private String userName;
+
+	private String password;
+
+	private String fullName;
+
+	private String mobileNo;
 	
-	private int rowCount;
-	private int colCount;
+	private String email;
+
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+//    @JsonBackReference
+//    private Set<Booking> bookings;
 }

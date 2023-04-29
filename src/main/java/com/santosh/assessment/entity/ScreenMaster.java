@@ -13,25 +13,27 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
 @Data
 @Entity
-public class Theatre {
+public class ScreenMaster {
 	@Id
 	@GeneratedValue(generator = "UUID")
 	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-	@Column(name = "id", columnDefinition = "VARCHAR(255)")
+	@Column(columnDefinition = "VARCHAR(255)")
 	@Type(type = "org.hibernate.type.UUIDCharType")
-	@JsonProperty("theatreId")
-	private UUID id;
-	
-	private String name;
+	private UUID screenId;
 	
 	@ManyToOne
-	@JoinColumn(name = "city_id")
+	@JoinColumn(name = "theatre_id")
 	@JsonManagedReference
-	private City city;
+	private TheatreMaster theatre;
+	
+	private Integer screenNo;
+	
+	private Integer totalStrength;
+	
+	private String screenType;
 }

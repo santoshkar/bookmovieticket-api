@@ -7,11 +7,19 @@ import lombok.Data;
 
 @Data
 public class ScreenResponseElement{
-	private String theatreName;
-	private String city;
-	private List<ScreenIdAndtimeDto> screens = new ArrayList<>();
 	
-	public void addElement(ScreenIdAndtimeDto dto) {
-		this.screens.add(dto);
+	private String theatreId;
+	private String theatreName;
+	private String cityId;
+	private String cityName;
+	private String countryName;
+	private String movieId;
+	private String title;
+	private String movieLanguage;
+	
+	private List<MovieShowResponseDto> showTimes = new ArrayList<>();
+	
+	public void addElement(MovieShowResponseDto dto) {
+		this.showTimes.add(dto);
 	}
 }

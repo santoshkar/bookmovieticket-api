@@ -1,7 +1,7 @@
 spring:
   datasource:
     password: root
-    url: jdbc:mysql://localhost:3306/ticketbooking
+    url: jdbc:mysql://localhost:3306/ticket_booking_v2
     username: root
   jpa:
     show-sql: true

@@ -7,10 +7,10 @@ import lombok.Data;
 
 @Data
 public class ScreeningResponse {
-	List<ScreenResponseElement> screenList = new ArrayList<>();
+	List<ScreenResponseElement> shows = new ArrayList<>();
 	
 	public void addElement(ScreenResponseElement e) {
-		this.screenList.add(e);
+		this.shows.add(e);
 	}
 }
 

@@ -10,26 +10,25 @@ import javax.persistence.Id;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import lombok.Data;
 
 @Data
 @Entity
-public class City  {
-    @Id
+public class MovieMaster {
+	@Id
 	@GeneratedValue(generator = "UUID")
 	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-	@Column(name = "id", columnDefinition = "VARCHAR(255)")
-    @Type(type = "org.hibernate.type.UUIDCharType")
-    @JsonProperty("cityId")
-    private UUID id;
-
-    private String country;
-
-    private String city;
-    
-//    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
-//    @JsonBackReference
-//    private Set<TheatreScreen> theatreScreen;
+	@Column(columnDefinition = "VARCHAR(255)")
+	@Type(type = "org.hibernate.type.UUIDCharType")
+	private UUID movieId;
+	
+	private int duration;
+	
+	private String genre;
+	
+	private String poster;
+	
+	private String title;
+	
+	private String language;
 }

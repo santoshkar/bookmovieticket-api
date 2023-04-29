@@ -5,11 +5,11 @@ import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.santosh.assessment.entity.MovieRelease;
+import com.santosh.assessment.entity.CityMaster;
+import com.santosh.assessment.entity.MovieReleaseMaster;
 
-public interface MovieReleaseRepository extends JpaRepository<MovieRelease, UUID> {
-//	TheatreScreen findByNameAndScreenNo(String name, int screenNo);
-	List<MovieRelease> findByCity_id(UUID city_id);
-//	List<TheatreScreen> findByCity_cityIgnoreCase(String city);
-//	List<TheatreScreen> findByNameContainingIgnoreCase(String partialText);
+public interface MovieReleaseRepository extends JpaRepository<MovieReleaseMaster, UUID> {
+	List<MovieReleaseMaster> findByCity(CityMaster city);
+	
+	MovieReleaseMaster findByMovie_movieIdAndCity_cityId(UUID movieId, UUID cityId);
 }

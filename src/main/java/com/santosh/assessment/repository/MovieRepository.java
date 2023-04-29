@@ -1,14 +1,13 @@
 package com.santosh.assessment.repository;
 
-import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.santosh.assessment.entity.Movie;
+import com.santosh.assessment.entity.MovieMaster;
 
-public interface MovieRepository extends JpaRepository<Movie, UUID> {
-	List<Movie> findByLanguageIgnoreCase(String language);
-	Movie findByTitleContainingIgnoreCase(String partialText);
-	List<Movie> findByLanguageAndTitleContainingIgnoreCase(String language, String partialText);
+public interface MovieRepository extends JpaRepository<MovieMaster, UUID> {
+//	List<MovieMaster> findByLanguageIgnoreCase(String language);
+//	MovieMaster findByTitleContainingIgnoreCase(String partialText);
+//	List<MovieMaster> findByLanguageAndTitleContainingIgnoreCase(String language, String partialText);
 }

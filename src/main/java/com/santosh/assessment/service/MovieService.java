@@ -1,48 +1,56 @@
 package com.santosh.assessment.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.santosh.assessment.entity.MovieRelease;
-import com.santosh.assessment.entity.MovieScreening;
-import com.santosh.assessment.entity.MovieTheatre;
+import com.santosh.assessment.entity.CityMaster;
+import com.santosh.assessment.entity.MovieMaster;
+import com.santosh.assessment.entity.MovieReleaseMaster;
+import com.santosh.assessment.entity.ShowMaster;
 import com.santosh.assessment.repository.MovieReleaseRepository;
-import com.santosh.assessment.repository.MovieScreeningRepository;
-import com.santosh.assessment.repository.MovieTheatreRepository;
+import com.santosh.assessment.repository.MovieRepository;
+import com.santosh.assessment.repository.ShowRepository;
 
 @Service
 public class MovieService {
-	
+
 	@Autowired
 	private MovieReleaseRepository movieReleaseRepo;
+
+	@Autowired
+	private ShowRepository showRepository;
 	
 	@Autowired
-	private MovieScreeningRepository movieScreeningRepo;
-	
-	@Autowired
-	private MovieTheatreRepository movieTheatreRepo;
+	private MovieRepository movieRepo;
 
-	public List<MovieRelease> findAllCitiesByCityId(String cityId) {
-		return movieReleaseRepo.findByCity_id(UUID.fromString(cityId));
-	}
-	
-	public  List<MovieTheatre> findScreenTimings(String movieId, String cityId) {
-		return movieTheatreRepo.findByMovieIdAndTheatre_city_id(UUID.fromString(movieId), UUID.fromString(cityId));
+
+	public MovieMaster findMovie(String movieId) {
+		return movieRepo.findById(UUID.fromString(movieId)).get();
 	}
 
-	public  List<MovieTheatre> findTheatreAndTimeByMovieId(String movieId, String cityId) {
-		return movieTheatreRepo.findByMovieIdAndTheatre_city_id(UUID.fromString(movieId), UUID.fromString(cityId));
+	public List<MovieReleaseMaster> findAllReleasesByCityId(String cityId) {
+		return movieReleaseRepo.findByCity(new CityMaster(cityId));
 	}
 
-	public List<MovieScreening> findScreeningByMovieTheatreId(String movieTheatreId) {
-		return movieScreeningRepo.findByMovieTheatre_id(UUID.fromString(movieTheatreId));
-	}
-	
-	public List<MovieScreening> findScreeningByMovieTheatreId(UUID movieTheatreId) {
-		return movieScreeningRepo.findByMovieTheatre_id(movieTheatreId);
+	public MovieReleaseMaster findReleaseByMovieAndCity(String movieId, String cityId) {
+		return movieReleaseRepo.findByMovie_movieIdAndCity_cityId(UUID.fromString(movieId), UUID.fromString(cityId));
 	}
 
+	public List<ShowMaster> findTheatresAndTimesForMovie(String movieId, String cityId, Date movieDate) {
+		MovieReleaseMaster release = findReleaseByMovieAndCity(movieId, cityId);
+		List<ShowMaster> list = showRepository.findByReleaseAndShowDate(release, movieDate);
+		return list;
+	}
+
+//	public  List<MovieTheatreScreen> findScreenTimings(String movieId, String cityId) {
+//		return movieAndTheatreRepo.findByMovieIdAndTheatreScreen_Theatre_City_id(UUID.fromString(movieId), UUID.fromString(cityId));
+//	}
+//
+//	public List<MovieTheatreScreen> findMovieAndTheatreByMovieTheatreIdAndDate(String movieTheatreId, Date movieDate) {
+//		return movieAndTheatreRepo.findByIdAndShowDate(UUID.fromString(movieTheatreId), movieDate);
+//	}
 }

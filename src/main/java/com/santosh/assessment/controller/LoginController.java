@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.santosh.assessment.dto.LoginDto;
-import com.santosh.assessment.entity.Customer;
+import com.santosh.assessment.entity.CustomerMaster;
 import com.santosh.assessment.exception.CustomerNotFoundException;
 import com.santosh.assessment.service.LoginService;
 
@@ -19,7 +19,7 @@ public class LoginController {
 
 	@PostMapping("/customer-login")
 	public ResponseEntity<?> loginCustomer(@RequestBody LoginDto loginDto){
-		Customer entity = loginService.findCustomer(loginDto);
+		CustomerMaster entity = loginService.findCustomer(loginDto);
 		if(entity == null)
 			throw new CustomerNotFoundException("Invalid username or password");
 		return ResponseEntity.ok(entity);

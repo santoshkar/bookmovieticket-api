@@ -4,8 +4,8 @@ import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.santosh.assessment.entity.City;
+import com.santosh.assessment.entity.CityMaster;
 
-public interface CityRepository extends JpaRepository<City, UUID> {
+public interface CityRepository extends JpaRepository<CityMaster, UUID> {
 	
 }
