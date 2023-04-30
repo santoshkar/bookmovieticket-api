@@ -23,8 +23,8 @@ public class SeatController {
 	private SeatService seatService;
 
 	@GetMapping("/seat")
-	public ResponseEntity<?> findSeats(@RequestParam String screenId) {
-		Map<String, Set<SeatDto>> data = seatService.findAllSeatsForScreen(screenId);
+	public ResponseEntity<?> findSeats(@RequestParam String screenId,  @RequestParam String showId) {
+		Map<String, Set<SeatDto>> data = seatService.findAllSeatsForScreen(screenId, showId);
 		
 		SeatResponse response = new SeatResponse();
 		
@@ -34,8 +34,10 @@ public class SeatController {
 			
 			setSet.forEach(seat -> {
 				SeatColumn seatColumn = new SeatColumn();
+				seatColumn.setSeatId(seat.getSeatId());
 				seatColumn.setLabel(seat.getTicketNumber());
 				seatColumn.setIndex(seat.getIndex());
+				seatColumn.setSeatAvailability(seat.getStatus());
 				seatRow.addElement(seatColumn);
 			});
 			response.addElement(seatRow);
@@ -77,9 +79,10 @@ public class SeatController {
 
 	@Data
 	public class SeatColumn {
+		private String seatId;
 		private String label;
 		private int index;
-		private int bookingStatus = 0;
+		private String seatAvailability;;
 	}
 
 }

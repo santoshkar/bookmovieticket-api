@@ -32,8 +32,6 @@ public class Seat {
 	private ScreenMaster screen;
 
 	private String rowName;
-	
+
 	private int ticketNo;
-	
-//	private double price;
 }

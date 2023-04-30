@@ -7,9 +7,11 @@ import lombok.Data;
 @AllArgsConstructor
 public class SeatDto implements Comparable<SeatDto> {
 
+	private String seatId;
 	private String rowLabel;
 	private String ticketNumber;
 	private int index;
+	private String status = "AVAILABLE";	//TODO: to be number
 
 	public String getTicketNumber() {
 		return rowLabel + ticketNumber;

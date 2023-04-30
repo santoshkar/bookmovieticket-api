@@ -20,5 +20,4 @@ public class TicketController {
 		TicketPrice price = ticketService.getTicketPriceByMovieTheatreId(screenId);
 		return ResponseEntity.ok(price);
 	}
-	
 }

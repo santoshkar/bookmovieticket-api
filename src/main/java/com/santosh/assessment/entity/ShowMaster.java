@@ -41,5 +41,4 @@ public class ShowMaster {
 	private Date showDate;
 	
 	private Time showTime; 
-	
 }
