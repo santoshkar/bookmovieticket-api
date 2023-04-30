@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.santosh.assessment.entity.TicketPrice;
 import com.santosh.assessment.service.TicketService;
 
 @RestController
@@ -15,9 +16,9 @@ public class TicketController {
 	private TicketService ticketService;
 	
 	@GetMapping("/ticket-price")
-	public ResponseEntity<?> findTicketPrice(@RequestParam String movieTheatreId){
-//		TicketPriceMaster p = ticketService.getTicketPriceByMovieTheatreId(movieTheatreId);
-		return ResponseEntity.ok().build();
+	public ResponseEntity<?> findTicketPrice(@RequestParam String screenId){
+		TicketPrice price = ticketService.getTicketPriceByMovieTheatreId(screenId);
+		return ResponseEntity.ok(price);
 	}
 	
 }

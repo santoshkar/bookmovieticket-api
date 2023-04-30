@@ -18,22 +18,18 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Seat {
+public class TicketPrice {
 	@Id
 	@GeneratedValue(generator = "UUID")
 	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 	@Column(columnDefinition = "VARCHAR(255)")
 	@Type(type = "org.hibernate.type.UUIDCharType")
-	private UUID seatId;
-
+	private UUID ticketPriceId;
+	
 	@ManyToOne
 	@JoinColumn(name = "screen_id")
 	@JsonManagedReference
 	private ScreenMaster screen;
-
-	private String rowName;
 	
-	private int ticketNo;
-	
-//	private double price;
+	private float price;
 }
