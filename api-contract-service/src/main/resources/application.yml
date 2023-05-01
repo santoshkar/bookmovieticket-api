@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    password: root
+    url: jdbc:mysql://localhost:3306/api_service
+    username: root
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+#    generate-ddl: true
+
+server:
+  servlet:
+    context-path: /api
+  port: 9091
