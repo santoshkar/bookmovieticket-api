@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    password: root
+    url: jdbc:mysql://localhost:3306/client_miraj
+    username: root
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+      
+server:
+  servlet:
+    context-path: /api/miraj
+  port: 9093

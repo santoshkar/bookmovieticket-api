@@ -1,10 +1,9 @@
 package com.assesment.movie.service;
 
-import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.assesment.movie.entity.CityMaster;
@@ -30,10 +29,12 @@ public class MovieService {
 	private MovieRepository movieRepo;
 
 
+	@Cacheable("movielist")
 	public List<MovieMaster> findMovies() {
 		return movieRepo.findAll();
 	}
 
+	@Cacheable("movielistbycity")
 	public List<MovieReleaseMaster> findAllReleasesByCityId(String cityId) {
 		return movieReleaseRepo.findByCity(new CityMaster(cityId));
 	}
