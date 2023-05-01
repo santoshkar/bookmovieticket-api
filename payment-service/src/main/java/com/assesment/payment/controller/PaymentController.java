@@ -18,10 +18,6 @@ public class PaymentController {
     @Autowired
     private PluginRegistry<IPaymentService, PaymentMethod> pluginRegistry;
 
-   /* public PaymentController(PluginRegistry<IPaymentService, PaymentMethod> pluginRegistry) {
-        this.pluginRegistry = pluginRegistry;
-    }*/
-
     @PostMapping
     public ResponseEntity<String> pay(@RequestBody PaymentRequest paymentRequest) {
         IPaymentService paymentService = pluginRegistry.getPluginFor(paymentRequest.getPaymentMethod())
